@@ -6,6 +6,7 @@ module.exports = function dekuMemoize (component) {
   }
 
   return assign({}, component, {
+    shouldUpdate: undefined,
     render: memoize(
       component.render,
       component.shouldUpdate || defaultUpdate)
