@@ -1,18 +1,32 @@
 {
   "name": "deku-memoize",
+  "description": "Higher-order Deku component to allow components to have a shouldUpdate method",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "node test.js"
-  },
   "author": "Rico Sta. Cruz <rico@ricostacruz.com>",
-  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rstacruz/deku-memoize/issues"
+  },
+  "dependencies": {
+    "object-assign": "4.0.1"
+  },
   "devDependencies": {
     "deep-equal": "1.0.1",
     "tape": "4.4.0"
   },
-  "dependencies": {
-    "object-assign": "4.0.1"
+  "homepage": "https://github.com/rstacruz/deku-memoize#readme",
+  "keywords": [
+    "deku",
+    "memoize",
+    "render",
+    "shouldUpdate"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rstacruz/deku-memoize.git"
+  },
+  "scripts": {
+    "test": "node test.js"
   }
 }
