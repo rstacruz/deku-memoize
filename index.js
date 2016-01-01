@@ -16,13 +16,15 @@ module.exports = function dekuMemoize (component) {
 }
 
 function memoize (func, shouldUpdate) {
-  var last, result
+  var calls = {}
 
   var memoize = function (model) {
-    if (last && !shouldUpdate(model, last)) return result 
-    result = func.call(this, model)
-    last = model
-    return result
+    if (!calls[model.path]) calls[model.path] = {}
+    var cache = calls[model.path]
+    if (cache.last && !shouldUpdate(model, cache.last)) return cache.result 
+    cache.result = func.call(this, model)
+    cache.last = model
+    return cache.result
   }
 
   return memoize
