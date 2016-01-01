@@ -9,6 +9,8 @@ Decorator to allow components to have a `shouldUpdate` method. For use with [dek
 `dekuMemoize(component)` takes in a deku Component, and returns another Component (a [decorator]). It will use the component's `shouldUpdate` funtion to check if there are updates to be done.
 
 ```js
+import dekuMemoize from 'deku-memoize'
+
 function render ({ props }) {
   return <button>{ props.label }</button>
 }
