@@ -4,7 +4,10 @@ var deepEqual = require('deep-equal')
 
 test('memoize', function (t) {
   var calls = 0
-  var component = memoize({ render: function () { calls++ } })
+  var component = memoize({
+    render: function () { calls++ },
+    shouldUpdate: function () { return false }
+  })
 
   component.render({ props: 0 })
   t.equal(calls, 1, 'called at first')
@@ -18,7 +21,7 @@ test('memoize with objects', function (t) {
   var calls = 0
   var component = memoize({
     render: function () { calls++ },
-    shouldUpdate: deepEqual
+    shouldUpdate: negate(deepEqual)
   })
 
   component.render({ props: { name: 'john' } })
@@ -31,3 +34,7 @@ test('memoize with objects', function (t) {
   t.equal(calls, 2, 'not called when props havent changed')
   t.end()
 })
+
+function negate (fn) {
+  return function () { return !fn.apply(this, arguments) }
+}

@@ -1,6 +1,12 @@
 # deku-memoize
 
-Higher-order component to allow components to have a `shouldUpdate` method. For use with [deku] v2 or [decca].
+Decorator to allow components to have a `shouldUpdate` method. For use with [deku] v2 or [decca].
+
+[![Status](https://travis-ci.org/rstacruz/deku-memoize.svg?branch=master)](https://travis-ci.org/rstacruz/deku-memoize "See test builds")
+
+## Usage
+
+`dekuMemoize(component)` takes in a deku Component, and returns another Component (a [decorator]). It will use the component's `shouldUpdate` funtion to check if there are updates to be done.
 
 ```js
 function render ({ props }) {
@@ -16,10 +22,17 @@ function shouldUpdate (model, last) {
 module.exports = dekuMemoize({ render, shouldUpdate })
 ```
 
-[![Status](https://travis-ci.org/rstacruz/deku-memoize.svg?branch=master)](https://travis-ci.org/rstacruz/deku-memoize "See test builds")
+## shouldUpdate
+
+`shouldUpdate` takes 2 arguments; both are the first parameters passed onto `render()`. If it returns `true`, then a render will be triggered; otherwise, `render()` will not be called.
+
+`shouldUpdate` will not be called on the first render.
+
+If shouldUpdate is not given, it will always re-render no matter what (default deku behavior).
 
 [deku]: http://dekujs.github.io/deku/
 [decca]: http://ricostacruz.com/decca
+[decorator]: https://en.wikipedia.org/wiki/Decorator_pattern
 
 ## Thanks
 
@@ -32,6 +45,5 @@ Authored and maintained by Rico Sta. Cruz with help from contributors ([list][co
 
 [MIT]: http://mit-license.org/
 [contributors]: http://github.com/rstacruz/deku-memoize/contributors
-[rsjs]: https://github.com/rstacruz/rsjs
 
 [![](https://img.shields.io/badge/%E2%9C%93-collaborative_etiquette-brightgreen.svg)](http://git.io/col)
