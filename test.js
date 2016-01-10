@@ -44,3 +44,5 @@ test('memoize with objects', function (t) {
 function negate (fn) {
   return function () { return !fn.apply(this, arguments) }
 }
+
+test('standard', require('tape-standard')())
