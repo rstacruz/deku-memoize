@@ -15,10 +15,9 @@ function render ({ props }) {
   return <button>{ props.label }</button>
 }
 
-// `model` is the parameter passed onto `render()`.
-// `last` is the last saved value of model since the last hot `render()`.
-function shouldUpdate (model, last) {
-  return model.props.label === last.props.label
+// `next` and `prev` are the parameters passed onto `render()`.
+function shouldUpdate (next, prev) {
+  return next.props.label !== prev.props.label
 }
 
 module.exports = dekuMemoize({ render, shouldUpdate })
