@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "object-assign": "4.1.0",
-    "standard": "6.0.8"
+    "standard": "7.0.1"
   },
   "devDependencies": {
     "deep-equal": "1.0.1",
