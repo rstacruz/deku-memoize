@@ -7,18 +7,25 @@ module.exports = function dekuMemoize (component) {
 
   if (!component.shouldUpdate) return component
 
+  var calls = {}
+
+  function onRemove (model) {
+    delete calls[model.path]
+    if (component.onRemove) component.onRemove(model)
+  }
+
   return assign({}, component, {
     shouldUpdate: undefined,
     render: memoize(
       component.render,
-      component.shouldUpdate)
+      component.shouldUpdate,
+      calls),
+    onRemove: onRemove
   })
 }
 
-function memoize (func, shouldUpdate) {
-  var calls = {}
-
-  var memoize = function (model) {
+function memoize (func, shouldUpdate, calls) {
+  return function (model) {
     if (!calls[model.path]) calls[model.path] = {}
     var cache = calls[model.path]
     if (cache.last && !shouldUpdate(model, cache.last)) return cache.result
@@ -26,6 +33,4 @@ function memoize (func, shouldUpdate) {
     cache.last = model
     return cache.result
   }
-
-  return memoize
 }
