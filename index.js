@@ -11,7 +11,7 @@ module.exports = function dekuMemoize (component) {
 
   function onRemove (model) {
     delete calls[model.path]
-    component.onRemove(model)
+    if (component.onRemove) component.onRemove(model)
   }
 
   return assign({}, component, {
