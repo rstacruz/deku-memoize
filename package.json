@@ -7,7 +7,7 @@
     "url": "https://github.com/rstacruz/deku-memoize/issues"
   },
   "dependencies": {
-    "object-assign": "4.1.0",
+    "object-assign": "4.1.1",
     "standard": "6.0.8"
   },
   "devDependencies": {
